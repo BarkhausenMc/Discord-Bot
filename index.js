@@ -1,10 +1,10 @@
 const { Client, GatewayintentBits, ChannelType} = require('discord.js');
 
-const Client = new Client({
-    intents: [
-        GatewayIntentBits.Guilds,
-        GatewayIntentBits.GuildMembers
-    ]
+const client = new Client({
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMembers
+  ]
 });
 
 async function updateMemberCount() {
