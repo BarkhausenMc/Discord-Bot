@@ -16,7 +16,6 @@ async function updateMemberCount() {
   await guild.members.fetch();
   
   const totalMembers = guild.memberCount;
-  const onlineMembers = guild.presences.cache.size;
   
   const channel = await guild.channels.fetch(process.env.MEMBER_COUNT_CHANNEL_ID);
   
@@ -26,7 +25,7 @@ async function updateMemberCount() {
                   channel.type === ChannelType.GuildStageVoice;
   
   if (isVoice) {
-    const name = `👥・Members: ${totalMembers} | 🟢・Online: ${onlineMembers}`;
+    const name = `👥・Members: ${totalMembers}`;
     
     if (channel.name !== name) {
       await channel.setName(name);
