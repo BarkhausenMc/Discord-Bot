@@ -30,9 +30,24 @@ async function updateMemberCount() {
 }
 
 client.on('ready', async () => {
-  console.log(`Logged in as ${client.user.tag}`);
+  console.log(`✅ Logged in as ${client.user.tag}`);
   
-  await updateMemberCount();
+  console.log(`📊 Checking guilds...`);
+  console.log(`Total guilds: ${client.guilds.cache.size}`);
+  
+  if (client.guilds.cache.size > 0) {
+    const guild = client.guilds.cache.first();
+    console.log(`🏆 First guild: ${guild.name} (${guild.id})`);
+    
+    try {
+      await updateMemberCount();
+      console.log(`✅ Member count updated successfully`);
+    } catch (err) {
+      console.error(`❌ Error updating member count:`, err.message);
+    }
+  } else {
+    console.error(`❌ Bot is not in any guild! Make sure the bot is added to your server.`);
+  }
   
   setInterval(updateMemberCount, 60000);
 });
