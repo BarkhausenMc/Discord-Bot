@@ -20,7 +20,12 @@ async function updateMemberCount() {
   
   const channel = await guild.channels.fetch(process.env.MEMBER_COUNT_CHANNEL_ID);
   
-  if (channel && channel.type === ChannelType.Voice) {
+  if (!channel) return;
+  
+  const isVoice = channel.type === ChannelType.GuildVoice || 
+                  channel.type === ChannelType.GuildStageVoice;
+  
+  if (isVoice) {
     const name = `👥・Members: ${totalMembers} | 🟢・Online: ${onlineMembers}`;
     
     if (channel.name !== name) {
@@ -44,6 +49,3 @@ client.on('presenceUpdate', () => {
 });
 
 client.login(process.env.DISCORD_BOT_TOKEN);
-
-
-
