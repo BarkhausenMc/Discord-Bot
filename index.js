@@ -1,4 +1,4 @@
-const { Client, GatewayintentBits, ChannelType, Client } = require('discord.js');
+const { Client, GatewayintentBits, ChannelType} = require('discord.js');
 
 const Client = new Client({
     intents: [
