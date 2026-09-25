@@ -9,45 +9,57 @@ const client = new Client({
 });
 
 async function updateMemberCount() {
-  const guild = client.guilds.cache.first();
+  console.log('[DEBUG] updateMemberCount called');
   
-  if (!guild) return;
+  const guild = client.guilds.cache.first();
+  console.log('[DEBUG] Guild:', guild ? guild.name : 'NONE');
+  
+  if (!guild) {
+    console.log('[ERROR] No guild found! Is bot invited to a server?');
+    return;
+  }
   
   await guild.members.fetch();
+  console.log('[DEBUG] Members fetched. Total:', guild.memberCount);
+  
+  const channelID = process.env.MEMBER_COUNT_CHANNEL_ID;
+  console.log('[DEBUG] Channel ID from env:', channelID);
+  
+  const channel = await guild.channels.fetch(channelID);
+  console.log('[DEBUG] Fetched channel:', channel ? channel.name : 'NOT FOUND');
+  
+  if (!channel) {
+    console.log('[ERROR] Could not find channel with that ID');
+    return;
+  }
+  
+  if (channel.type !== ChannelType.Voice) {
+    console.log('[ERROR] Channel is not a voice channel! Type:', channel.type);
+    return;
+  }
   
   const totalMembers = guild.memberCount;
   const onlineMembers = guild.presences.cache.size;
   
-  const channel = await guild.channels.fetch(process.env.MEMBER_COUNT_CHANNEL_ID);
+  const name = `👥・Members: ${totalMembers} | 🟢・Online: ${onlineMembers}`;
   
-  if (channel && channel.type === ChannelType.Voice) {
-    const name = `👥・Members: ${totalMembers} | 🟢・Online: ${onlineMembers}`;
-    
-    if (channel.name !== name) {
-      await channel.setName(name);
-    }
+  console.log('[DEBUG] Current channel name:', channel.name);
+  console.log('[DEBUG] New name would be:', name);
+  
+  if (channel.name === name) {
+    console.log('[INFO] Name already correct, skipping update');
+    return;
   }
+  
+  await channel.setName(name);
+  console.log('[SUCCESS] Channel name updated to:', name);
 }
 
 client.on('ready', async () => {
-  console.log(`✅ Logged in as ${client.user.tag}`);
+  console.log(`Logged in as ${client.user.tag}`);
+  console.log('Bot is in', client.guilds.cache.size, 'server(s)');
   
-  console.log(`📊 Checking guilds...`);
-  console.log(`Total guilds: ${client.guilds.cache.size}`);
-  
-  if (client.guilds.cache.size > 0) {
-    const guild = client.guilds.cache.first();
-    console.log(`🏆 First guild: ${guild.name} (${guild.id})`);
-    
-    try {
-      await updateMemberCount();
-      console.log(`✅ Member count updated successfully`);
-    } catch (err) {
-      console.error(`❌ Error updating member count:`, err.message);
-    }
-  } else {
-    console.error(`❌ Bot is not in any guild! Make sure the bot is added to your server.`);
-  }
+  await updateMemberCount();
   
   setInterval(updateMemberCount, 60000);
 });
@@ -59,6 +71,3 @@ client.on('presenceUpdate', () => {
 });
 
 client.login(process.env.DISCORD_BOT_TOKEN);
-
-
-
