@@ -17,38 +17,46 @@ async function updateMemberCount(guild) {
   try {
     if (!guild) return;
 
+    console.log(`Aktuelle Memberzahl: ${guild.memberCount}`);
+
     const channel = await guild.channels.fetch(
       process.env.MEMBER_COUNT_CHANNEL_ID
     );
 
     if (!channel) {
-      console.log('Member-Count-Channel wurde nicht gefunden.');
+      console.log('❌ Channel nicht gefunden!');
       return;
     }
+
+    console.log(`Channel gefunden: ${channel.name}`);
+    console.log(`Channel-ID: ${channel.id}`);
+    console.log(`Channel-Typ: ${channel.type}`);
 
     const isVoice =
       channel.type === ChannelType.GuildVoice ||
       channel.type === ChannelType.GuildStageVoice;
 
     if (!isVoice) {
-      console.log('Der Member-Count-Channel ist kein Voice/Stage Channel.');
+      console.log('❌ Der angegebene Channel ist kein Voice-Channel!');
       return;
     }
 
-    const totalMembers = guild.memberCount;
-    const name = `👥・Members: ${totalMembers}`;
+    const name = `👥・Members: ${guild.memberCount}`;
 
-    console.log(`Member Count: ${totalMembers}`);
+    console.log(`Soll neuer Name sein: ${name}`);
 
     if (channel.name !== name) {
       await channel.setName(name);
-      console.log(`Counter aktualisiert: ${name}`);
+      console.log(`✅ Channel erfolgreich umbenannt zu: ${name}`);
+    } else {
+      console.log('ℹ️ Channelname ist bereits korrekt.');
     }
 
   } catch (error) {
-    console.error('Fehler beim Aktualisieren des Member Counters:', error);
+    console.error('❌ Fehler beim Umbenennen:', error);
   }
 }
+
 
 client.once('ready', async () => {
   console.log(`Logged in as ${client.user.tag}`);
