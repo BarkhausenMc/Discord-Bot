@@ -17,48 +17,30 @@ async function updateMemberCount(guild) {
   try {
     if (!guild) return;
 
-    console.log(`Aktuelle Memberzahl: ${guild.memberCount}`);
-
     const channel = await guild.channels.fetch(
       process.env.MEMBER_COUNT_CHANNEL_ID
     );
 
-    if (!channel) {
-      console.log('❌ Channel nicht gefunden!');
-      return;
-    }
-
-    console.log(`Channel gefunden: ${channel.name}`);
-    console.log(`Channel-ID: ${channel.id}`);
-    console.log(`Channel-Typ: ${channel.type}`);
+    if (!channel) return;
 
     const isVoice =
       channel.type === ChannelType.GuildVoice ||
       channel.type === ChannelType.GuildStageVoice;
 
-    if (!isVoice) {
-      console.log('❌ Der angegebene Channel ist kein Voice-Channel!');
-      return;
-    }
+    if (!isVoice) return;
 
     const name = `👥・Members: ${guild.memberCount}`;
 
-    console.log(`Soll neuer Name sein: ${name}`);
-
     if (channel.name !== name) {
       await channel.setName(name);
-      console.log(`✅ Channel erfolgreich umbenannt zu: ${name}`);
-    } else {
-      console.log('ℹ️ Channelname ist bereits korrekt.');
     }
 
   } catch (error) {
-    console.error('❌ Fehler beim Umbenennen:', error);
+    console.error('Fehler beim Aktualisieren des Member Counters:', error);
   }
 }
 
-
-client.once('ready', async () => {
+client.once('clientReady', async () => {
   console.log(`Logged in as ${client.user.tag}`);
 
   const guild = client.guilds.cache.first();
@@ -78,12 +60,8 @@ client.on('guildMemberAdd', async (member) => {
 
   try {
     await member.roles.add(process.env.MEMBER_ROLE_ID);
-
-    console.log(
-      `${member.user.tag} hat die automatische Rolle erhalten.`
-    );
   } catch (error) {
-    console.error('Rolle konnte nicht vergeben werden:', error);
+    console.error('Fehler beim Vergeben der Rolle:', error);
   }
 
   setTimeout(() => {
@@ -92,7 +70,6 @@ client.on('guildMemberAdd', async (member) => {
 });
 
 client.on('guildMemberRemove', async (member) => {
-
   setTimeout(() => {
     updateMemberCount(member.guild);
   }, 2000);
