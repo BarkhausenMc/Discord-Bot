@@ -15,7 +15,6 @@ const commands = [
     new SlashCommandBuilder()
         .setName('our-team')
         .setDescription('Schickt das Embed mit der Team Vorstellung in den Channel.')
-        .setJSON(),
 ];
 
 const rest = new REST({ version: '10' })
