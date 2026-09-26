@@ -83,7 +83,7 @@ client.on('interactionCreate', async (interaction) => {
   if (!interaction.isChatInputCommand()) return;
 
   if (interaction.commandName === 'rules') {
-    const container = new ContainerBuilder()
+    const rulesContainer = new ContainerBuilder()
       .addTextDisplayComponents(
         new TextDisplayBuilder().setContent(
           '# 📜 Server Regeln\n\n' +
@@ -104,11 +104,27 @@ client.on('interactionCreate', async (interaction) => {
       );
 
     await interaction.reply({
-      components: [container],
+      components: [rulesContainer],
       flags: MessageFlags.IsComponentsV2
     });
   }
 });
 
+client.on('interactionCreate', async (interaction) =>{
+  if (!interaction.isChatInputCommand()) return;
+
+  if (interaction.commandName === 'our-team')  {
+    const ourTeamContainer = new ContainerBuilder()
+      .addTextDisplayComponents(
+        new TextDisplayBuilder().setContent(
+          'Our Team'
+        )
+      )
+    await interaction.reply({
+    components: [ourTeamContainer],
+    flags: MessageFlags.IsComponentsV2
+    });
+  }
+});
 
 client.login(process.env.DISCORD_BOT_TOKEN);
