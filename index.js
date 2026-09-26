@@ -127,4 +127,17 @@ client.on('interactionCreate', async (interaction) =>{
   }
 });
 
+
+client.on('interactionCreate', async (interaction) =>{
+  if (!interaction.isChatInputCommand()) return;
+
+  if (interaction.commandName === 'bot-shop') {
+    const botShopContainer = new ContainerBuilder()
+      .addTextDisplayComponents(
+        new TextDisplayBuilder().setContent(
+          'Bot Shop'
+        )
+      )
+  }
+})
 client.login(process.env.DISCORD_BOT_TOKEN);

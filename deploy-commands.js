@@ -14,7 +14,11 @@ const commands = [
 
     new SlashCommandBuilder()
         .setName('our-team')
-        .setDescription('Schickt das Embed mit der Team Vorstellung in den Channel.')
+        .setDescription('Schickt das Embed mit der Team Vorstellung in den Channel.'),
+
+    new SlashCommandBuilder()
+      .setName('bot-shop')
+      .setDescription('Schickt das Embed für den Bot Shop in den Channel.'),
 ];
 
 const rest = new REST({ version: '10' })
