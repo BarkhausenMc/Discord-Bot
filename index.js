@@ -3,7 +3,11 @@ require('dotenv').config();
 const {
   Client,
   GatewayIntentBits,
-  ChannelType
+  ChannelType,
+  ContainerBuilder,
+  TextDisplayBuilder,
+  SeparatorBuilder,
+  MessageFlags
 } = require('discord.js');
 
 const client = new Client({
@@ -74,5 +78,37 @@ client.on('guildMemberRemove', async (member) => {
     updateMemberCount(member.guild);
   }, 2000);
 });
+
+client.on('interactionCreate', async (interaction) => {
+  if (!interaction.isChatInputCommand()) return;
+
+  if (interaction.commandName === 'rules') {
+    const container = new ContainerBuilder()
+      .addTextDisplayComponents(
+        new TextDisplayBuilder().setContent(
+          '# 📜 Server Regeln\n\n' +
+          'Hier kommt dein Regeltext hin.\n\n' +
+          '**1. Regel**\n' +
+          'Deine erste Regel.\n\n' +
+          '**2. Regel**\n' +
+          'Deine zweite Regel.'
+        )
+      )
+      .addSeparatorComponents(
+        new SeparatorBuilder()
+      )
+      .addTextDisplayComponents(
+        new TextDisplayBuilder().setContent(
+          '⚠️ Mit dem Beitritt auf den Server akzeptierst du diese Regeln.'
+        )
+      );
+
+    await interaction.reply({
+      components: [container],
+      flags: MessageFlags.IsComponentsV2
+    });
+  }
+});
+
 
 client.login(process.env.DISCORD_BOT_TOKEN);
