@@ -139,7 +139,7 @@ client.on('interactionCreate', async (interaction) =>{
         )
       )
     await interaction.reply({
-    components: [ourTeamContainer],
+    components: [botShopContainer],
     flags: MessageFlags.IsComponentsV2
     });
   }
