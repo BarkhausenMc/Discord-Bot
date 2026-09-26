@@ -47,4 +47,13 @@ client.on('presenceUpdate', () => {
   setTimeout(updateMemberCount, 5000);
 });
 
+
+client.on('guildMemberAdd', async (member) =>{
+  try {
+    await member.roles.add(process.env.MEMBER_ROLE_ID)
+  }
+catch (error) {
+        console.error('Rolle konnte nicht vergeben werden:', error);
+    }
+});
 client.login(process.env.DISCORD_BOT_TOKEN);
