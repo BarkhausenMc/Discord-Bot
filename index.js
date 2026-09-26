@@ -84,77 +84,110 @@ client.on('interactionCreate', async (interaction) => {
 
   if (interaction.commandName === 'rules') {
     const rulesContainer = new ContainerBuilder()
+
+      // 📚 General Server Rules
       .addTextDisplayComponents(
         new TextDisplayBuilder().setContent(
-          '# 📚 Allgemeine Serverregeln 📚\n\n' +
-          '__**🔹 Verhalten & Respekt**__\n' +
-          '• 🤝 Sei freundlich und respektvoll – Behandle alle Mitglieder so, wie du selbst behandelt werden möchtest.\n' +
-          '• 🚫 Kein Mobbing, Hass oder Diskriminierung – Rassismus, Sexismus, Homophobie, Transphobie oder andere Formen von Hass sind streng verboten.\n' +
-          '• 💬 Kein Spam oder Flooding – Vermeide wiederholte Nachrichten, übermäßige Emojis oder sinnlose Inhalte.'
+          '# 📚 General Server Rules 📚\n\n' +
+
+          '__**🔹 Behavior & Respect**__\n\n' +
+
+          '• 🤝 **Be friendly and respectful** – Treat all members the way you would like to be treated.\n\n' +
+
+          '• 🚫 **No bullying, hate, or discrimination** – Racism, sexism, homophobia, transphobia, or any other form of hate is strictly prohibited.\n\n' +
+
+          '• 💬 **No spam or flooding** – Avoid sending repeated messages, excessive emojis, or meaningless content.'
         )
       )
 
       .addSeparatorComponents(
-        new SeparatorBuilder().setDivider(true).setSpacing(1)
+        new SeparatorBuilder()
+          .setDivider(true)
+          .setSpacing(1)
       )
 
+      // 🔹 Content & Communication
       .addTextDisplayComponents(
         new TextDisplayBuilder().setContent(
-          '__**🔹 Inhalte & Kommunikation**__\n' +
-          '• 🔞 Keine NSFW-Inhalte – Keine pornografischen, sexuell expliziten oder gewalttätigen Inhalte.\n' +
-          '• 🚨 Keine illegalen Inhalte – Keine Links zu Raubkopien, Drogen, Waffen oder anderen illegalen Themen.\n' +
-          '• 📢 Keine Werbung ohne Erlaubnis – Server-Einladungen oder Werbung nur in dafür vorgesehenen Kanälen.'
+          '__**🔹 Content & Communication**__\n\n' +
+
+          '• 🔞 **No NSFW content** – Pornographic, sexually explicit, or excessively violent content is prohibited.\n\n' +
+
+          '• 🚨 **No illegal content** – Do not share links to pirated content, drugs, weapons, or other illegal activities.\n\n' +
+
+          '• 📢 **No advertising without permission** – Server invites and advertisements are only allowed in designated channels.'
         )
       )
 
       .addSeparatorComponents(
-        new SeparatorBuilder().setDivider(true).setSpacing(1)
+        new SeparatorBuilder()
+          .setDivider(true)
+          .setSpacing(1)
       )
 
+      // 🔹 Privacy & Security
       .addTextDisplayComponents(
         new TextDisplayBuilder().setContent(
-          '__**🔹 Datenschutz & Sicherheit**__\n' +
-          '• 🔒 Schütze deine Daten – Gib keine persönlichen Informationen (Adresse, Passwörter etc.) preis.\n' +
-          '• 🚫 Kein Doxxing – Veröffentliche keine privaten Informationen anderer Personen.\n' +
-          '• 🤖 Vorsicht vor Phishing – Klicke keine verdächtigen Links und melde sie den Moderatoren.'
+          '__**🔹 Privacy & Security**__\n\n' +
+
+          '• 🔒 **Protect your personal information** – Do not share personal information such as your address, passwords, or other sensitive data.\n\n' +
+
+          '• 🚫 **No doxxing** – Do not publish or share private information belonging to other people.\n\n' +
+
+          '• 🤖 **Beware of phishing** – Do not click suspicious links and report them to the moderators.'
         )
       )
 
       .addSeparatorComponents(
-        new SeparatorBuilder().setDivider(true).setSpacing(1)
+        new SeparatorBuilder()
+          .setDivider(true)
+          .setSpacing(1)
       )
 
+      // 🔹 Moderation & Consequences
       .addTextDisplayComponents(
         new TextDisplayBuilder().setContent(
-          '__**🔹 Moderation & Konsequenzen**__\n' +
-          '• ⚠️ Warnungen & Kicks – Bei Verstößen gibt es zunächst eine Warnung, bei Wiederholung einen Kick.\n' +
-          '• 🚪 Bans – Bei schweren Verstößen (z. B. Hass, illegale Inhalte) folgt ein sofortiger Ban.\n' +
-          '• 📩 Melde User – Nutze den Report-Kanal um ein Missverhalten eines Users zu melden.'
+          '__**🔹 Moderation & Consequences**__\n\n' +
+
+          '• ⚠️ **Warnings & Kicks** – Violations may initially result in a warning. Repeated violations may result in a kick.\n\n' +
+
+          '• 🚪 **Bans** – Serious violations, such as hate speech or illegal content, may result in an immediate ban.\n\n' +
+
+          '• 📩 **Report users** – Use the report channel to report inappropriate behavior or rule violations.'
         )
       )
 
       .addSeparatorComponents(
-        new SeparatorBuilder().setDivider(true).setSpacing(1)
+        new SeparatorBuilder()
+          .setDivider(true)
+          .setSpacing(1)
       )
 
+      // 🔹 Other
       .addTextDisplayComponents(
         new TextDisplayBuilder().setContent(
-          '__**🔹 Sonstiges**__\n' +
-          '• 🔄 Unwissenheit schützt nicht vor Strafen.\n' +
-          '• 💙 Discord ToS: https://discord.com/terms\n' +
-          '• 💙 Discord Guidelines: https://discord.com/guidelines'
+          '__**🔹 Other**__\n\n' +
+
+          '• 🔄 **Ignorance of the rules is not an excuse.**\n\n' +
+
+          '• 💙 **Discord ToS:** https://discord.com/terms\n\n' +
+
+          '• 💙 **Discord Guidelines:** https://discord.com/guidelines'
         )
       )
 
       .addSeparatorComponents(
-        new SeparatorBuilder().setDivider(true).setSpacing(1)
+        new SeparatorBuilder()
+          .setDivider(true)
+          .setSpacing(1)
       )
 
+      // ⚠️ Acceptance notice
       .addTextDisplayComponents(
         new TextDisplayBuilder().setContent(
-          '⚠️ Mit dem Beitritt auf den Server akzeptierst du diese Regeln.'
+          '⚠️ **By joining this server, you agree to follow these rules.**'
         )
-      )
+      );
 
     await interaction.reply({
       components: [rulesContainer],
@@ -162,6 +195,7 @@ client.on('interactionCreate', async (interaction) => {
     });
   }
 });
+
 
 client.on('interactionCreate', async (interaction) =>{
   if (!interaction.isChatInputCommand()) return;
