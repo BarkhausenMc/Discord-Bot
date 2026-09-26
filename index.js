@@ -87,59 +87,74 @@ client.on('interactionCreate', async (interaction) => {
       .addTextDisplayComponents(
         new TextDisplayBuilder().setContent(
           '# 📚 Allgemeine Serverregeln 📚\n\n' +
-
           '__**🔹 Verhalten & Respekt**__\n' +
-
           '• 🤝 Sei freundlich und respektvoll – Behandle alle Mitglieder so, wie du selbst behandelt werden möchtest.\n' +
-
           '• 🚫 Kein Mobbing, Hass oder Diskriminierung – Rassismus, Sexismus, Homophobie, Transphobie oder andere Formen von Hass sind streng verboten.\n' +
+          '• 💬 Kein Spam oder Flooding – Vermeide wiederholte Nachrichten, übermäßige Emojis oder sinnlose Inhalte.'
+        )
+      )
 
-          '• 💬 Kein Spam oder Flooding – Vermeide wiederholte Nachrichten, übermäßige Emojis oder sinnlose Inhalte.\n' 
-          .addSeparatorComponents(new SeparatorBuilder().setDivider(true).setSpacing(1)),
+      .addSeparatorComponents(
+        new SeparatorBuilder().setDivider(true).setSpacing(1)
+      )
 
+      .addTextDisplayComponents(
+        new TextDisplayBuilder().setContent(
           '__**🔹 Inhalte & Kommunikation**__\n' +
-
           '• 🔞 Keine NSFW-Inhalte – Keine pornografischen, sexuell expliziten oder gewalttätigen Inhalte.\n' +
-
           '• 🚨 Keine illegalen Inhalte – Keine Links zu Raubkopien, Drogen, Waffen oder anderen illegalen Themen.\n' +
+          '• 📢 Keine Werbung ohne Erlaubnis – Server-Einladungen oder Werbung nur in dafür vorgesehenen Kanälen.'
+        )
+      )
 
-          '• 📢 Keine Werbung ohne Erlaubnis – Server-Einladungen oder Werbung nur in dafür vorgesehenen Kanälen.\n' 
-          .addSeparatorComponents(new SeparatorBuilder().setDivider(true).setSpacing(1)),
+      .addSeparatorComponents(
+        new SeparatorBuilder().setDivider(true).setSpacing(1)
+      )
 
+      .addTextDisplayComponents(
+        new TextDisplayBuilder().setContent(
           '__**🔹 Datenschutz & Sicherheit**__\n' +
-
           '• 🔒 Schütze deine Daten – Gib keine persönlichen Informationen (Adresse, Passwörter etc.) preis.\n' +
-
           '• 🚫 Kein Doxxing – Veröffentliche keine privaten Informationen anderer Personen.\n' +
+          '• 🤖 Vorsicht vor Phishing – Klicke keine verdächtigen Links und melde sie den Moderatoren.'
+        )
+      )
 
-          '• 🤖 Vorsicht vor Phishing – Klicke keine verdächtigen Links und melde sie den Moderatoren.\n' 
-          .addSeparatorComponents(new SeparatorBuilder().setDivider(true).setSpacing(1)),
+      .addSeparatorComponents(
+        new SeparatorBuilder().setDivider(true).setSpacing(1)
+      )
 
+      .addTextDisplayComponents(
+        new TextDisplayBuilder().setContent(
           '__**🔹 Moderation & Konsequenzen**__\n' +
-
           '• ⚠️ Warnungen & Kicks – Bei Verstößen gibt es zunächst eine Warnung, bei Wiederholung einen Kick.\n' +
-
           '• 🚪 Bans – Bei schweren Verstößen (z. B. Hass, illegale Inhalte) folgt ein sofortiger Ban.\n' +
+          '• 📩 Melde User – Nutze den Report-Kanal um ein Missverhalten eines Users zu melden.'
+        )
+      )
 
-          '• 📩 Melde User – Nutze den Report-Kanal um ein Missverhalten eines Users zu melden.\n' 
-          .addSeparatorComponents(new SeparatorBuilder().setDivider(true).setSpacing(1)),
+      .addSeparatorComponents(
+        new SeparatorBuilder().setDivider(true).setSpacing(1)
+      )
 
+      .addTextDisplayComponents(
+        new TextDisplayBuilder().setContent(
           '__**🔹 Sonstiges**__\n' +
-
           '• 🔄 Unwissenheit schützt nicht vor Strafen.\n' +
-
           '• 💙 Discord ToS: https://discord.com/terms\n' +
-
           '• 💙 Discord Guidelines: https://discord.com/guidelines'
         )
       )
-      .addSeparatorComponents(new SeparatorBuilder().setDivider(true).setSpacing(1))
+
+      .addSeparatorComponents(
+        new SeparatorBuilder().setDivider(true).setSpacing(1)
+      )
 
       .addTextDisplayComponents(
         new TextDisplayBuilder().setContent(
           '⚠️ Mit dem Beitritt auf den Server akzeptierst du diese Regeln.'
         )
-      );
+      )
 
     await interaction.reply({
       components: [rulesContainer],
