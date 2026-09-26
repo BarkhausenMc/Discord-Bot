@@ -138,6 +138,10 @@ client.on('interactionCreate', async (interaction) =>{
           'Bot Shop'
         )
       )
+    await interaction.reply({
+    components: [ourTeamContainer],
+    flags: MessageFlags.IsComponentsV2
+    });
   }
-})
+});
 client.login(process.env.DISCORD_BOT_TOKEN);
